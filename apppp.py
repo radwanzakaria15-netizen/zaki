@@ -44,7 +44,7 @@ home = '''
 <body>
 <header>
 <h1>Zaki</h1>
-<h2>📊موقع حساب المعدل</h2>
+<h2>موقع حساب المعدل</h2>
 </header>
 
 <div class="buttons">
