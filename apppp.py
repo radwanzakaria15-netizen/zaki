@@ -7,7 +7,7 @@ html = '''
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>حساب معدل السداسي - Zaki</title>
+<title>حساب معدل السداسي </title>
 <style>
 body, html {
     margin:0;
@@ -155,7 +155,7 @@ a.reset-btn:hover{
 </head>
 <body>
 <div class="container">
-<h2>📊 حساب معدل السداسي - Zaki</h2>
+<h2>📊 حساب معدل السداسي </h2>
 <form method="post">
 <div class="cards">
 <div class="card">
