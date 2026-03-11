@@ -119,7 +119,7 @@ s_template = '''
 
 {% if mo3adal %}
 <div class="result" style="color: {{ color }};">
-🔥 معدلك هو: {{ mo3adal }} 🔥<br>{{ msg }}
+ معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
 <a href="/reset/{{sem}}" class="reset-btn">🔄 إعادة الحساب</a>
 <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
@@ -201,7 +201,7 @@ def year():
     <h2 class="result-title">حساب المعدل السنوي</h2>
     {% if mo3adal %}
     <div class="result" style="color: {{ color }};">
-    🔥 معدلك السنوي هو: {{ mo3adal }} 🔥<br>
+     معدلك السنوي هو: {{ mo3adal }} <br>
     {% if mo3adal >= 10 %}🎉 ألف مبروك، معدلك ممتاز!{% else %}❌ المعدل أقل من المطلوب{% endif %}
     </div>
     {% else %}
@@ -228,7 +228,7 @@ if __name__ == "__main__":
 
 {% if mo3adal %}
 <div class="result">
-🔥 معدلك هو: {{ mo3adal }} 🔥<br>{{ msg }}
+ معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
 <a href="/reset/{{sem}}" class="reset-btn">🔄 إعادة الحساب</a>
 <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
@@ -302,7 +302,7 @@ def year():
     <h2 class="result-title">حساب المعدل السنوي</h2>
     {% if mo3adal %}
     <div class="result">
-    🔥 معدلك السنوي هو: {{ mo3adal }} 🔥<br>
+     معدلك السنوي هو: {{ mo3adal }} <br>
     {% if mo3adal >= 10 %}🎉 ألف مبروك، معدلك ممتاز!{% else %}❌ المعدل أقل من المطلوب{% endif %}
     </div>
     {% else %}
@@ -394,7 +394,7 @@ s_template = '''
 
 {% if mo3adal %}
 <div class="result">
-🔥 معدلك هو: {{ mo3adal }} 🔥<br>{{ msg }}
+ معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
 <a href="/{{sem}}" class="reset-btn">🔄 إعادة الحساب</a>
 <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
@@ -466,7 +466,7 @@ def year():
     <h2 class="result-title">حساب المعدل السنوي</h2>
     {% if mo3adal %}
     <div class="result">
-    🔥 معدلك السنوي هو: {{ mo3adal }} 🔥<br>
+     معدلك السنوي هو: {{ mo3adal }} <br>
     {% if mo3adal >= 10 %}🎉 ألف مبروك، معدلك ممتاز!{% else %}❌ المعدل أقل من المطلوب{% endif %}
     </div>
     {% else %}
