@@ -235,41 +235,41 @@ s_template = '''
 <form method="post">
 <div class="cards">
 <div class="card"><h3>النحو</h3>
-  <input type="number" name="tdnaho" placeholder="TD" min="10" max="20" step="0.01" required>
-  <input type="number" name="examnaho" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="tdnaho" placeholder="TD" min="0" max="20" step="0.01" required>
+  <input type="number" name="examnaho" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>الصرف</h3>
-  <input type="number" name="tdsrf" placeholder="TD" min="10" max="20" step="0.01" required>
-  <input type="number" name="examsrf" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="tdsrf" placeholder="TD" min="0" max="20" step="0.01" required>
+  <input type="number" name="examsrf" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>الأدب</h3>
-  <input type="number" name="tdadab" placeholder="TD" min="10" max="20" step="0.01" required>
-  <input type="number" name="examadab" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="tdadab" placeholder="TD" min="0" max="20" step="0.01" required>
+  <input type="number" name="examadab" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>الرياضيات</h3>
-  <input type="number" name="tdm" placeholder="TD" min="10" max="20" step="0.01" required>
-  <input type="number" name="examm" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="tdm" placeholder="TD" min="0" max="20" step="0.01" required>
+  <input type="number" name="examm" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>الفيزياء</h3>
-  <input type="number" name="tdf" placeholder="TD" min="10" max="20" step="0.01" required>
-  <input type="number" name="examf" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="tdf" placeholder="TD" min="0" max="20" step="0.01" required>
+  <input type="number" name="examf" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>الكيمياء</h3>
-  <input type="number" name="tdc" placeholder="TD" min="10" max="20" step="0.01" required>
-  <input type="number" name="examc" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="tdc" placeholder="TD" min="0" max="20" step="0.01" required>
+  <input type="number" name="examc" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>الشريعة</h3>
-  <input type="number" name="examchari3a" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="examchari3a" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>{{tech_name}}</h3>
-  <input type="number" name="tdtech" placeholder="TD" min="10" max="20" step="0.01" required>
-  <input type="number" name="examtech" placeholder="Exam" min="10" max="20" step="0.01" required>
+  <input type="number" name="tdtech" placeholder="TD" min="0" max="20" step="0.01" required>
+  <input type="number" name="examtech" placeholder="Exam" min="0" max="20" step="0.01" required>
 </div>
 <div class="card"><h3>مواد أخرى</h3>
-  <input type="number" name="b" placeholder="البلاغة" min="10" max="20" step="0.01" required>
-  <input type="number" name="e" placeholder="الانجليزية" min="10" max="20" step="0.01" required>
-  <input type="number" name="i" placeholder="{{other_name}}" min="10" max="20" step="0.01" required>
-  <input type="number" name="y" placeholder="فنيات الكتابة" min="10" max="20" step="0.01" required>
+  <input type="number" name="b" placeholder="البلاغة" min="0" max="20" step="0.01" required>
+  <input type="number" name="e" placeholder="الانجليزية" min="0" max="20" step="0.01" required>
+  <input type="number" name="i" placeholder="{{other_name}}" min="0" max="20" step="0.01" required>
+  <input type="number" name="y" placeholder="فنيات الكتابة" min="0" max="20" step="0.01" required>
 </div>
 </div>
 <button type="submit" class="calc">احسب المعدل</button>
@@ -360,4 +360,5 @@ def year():
     mo3adal=None
     return render_template_string(year_template, mo3adal=mo3adal)
 
-app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
