@@ -121,7 +121,7 @@ s_template = '''
 <div class="result" style="color: {{ color }};">
  معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
-<a href="/reset/{{sem}}" class="reset-btn">🔄 إعادة الحساب</a>
+<a href="/reset/{{sem}}" class="reset-btn"> إعادة الحساب</a>
 <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
 {% endif %}
 
@@ -230,7 +230,7 @@ if __name__ == "__main__":
 <div class="result">
  معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
-<a href="/reset/{{sem}}" class="reset-btn">🔄 إعادة الحساب</a>
+<a href="/reset/{{sem}}" class="reset-btn"> إعادة الحساب</a>
 <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
 {% endif %}
 
@@ -396,7 +396,7 @@ s_template = '''
 <div class="result">
  معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
-<a href="/{{sem}}" class="reset-btn">🔄 إعادة الحساب</a>
+<a href="/{{sem}}" class="reset-btn"> إعادة الحساب</a>
 <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
 {% endif %}
 
