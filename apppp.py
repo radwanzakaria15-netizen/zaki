@@ -122,7 +122,7 @@ s_template = '''
  معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
 <a href="/reset/{{sem}}" class="reset-btn"> إعادة الحساب</a>
-<a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+<a href="/" class="home-btn"> الصفحة الرئيسية</a>
 {% endif %}
 
 </div>
@@ -207,7 +207,7 @@ def year():
     {% else %}
     <div class="result" style="color:#FF5555;">يجب أن تملأ علامات السداسي الأول والثاني</div>
     {% endif %}
-    <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+    <a href="/" class="home-btn"> الصفحة الرئيسية</a>
     </div>
     </body>
     </html>
@@ -231,7 +231,7 @@ if __name__ == "__main__":
  معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
 <a href="/reset/{{sem}}" class="reset-btn"> إعادة الحساب</a>
-<a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+<a href="/" class="home-btn"> الصفحة الرئيسية</a>
 {% endif %}
 
 </div>
@@ -308,7 +308,7 @@ def year():
     {% else %}
     <div class="result" style="color:#ff5555;">يجب أن تملأ علامات السداسي الأول والثاني</div>
     {% endif %}
-    <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+    <a href="/" class="home-btn"> الصفحة الرئيسية</a>
     </div>
     </body>
     </html>
@@ -397,7 +397,7 @@ s_template = '''
  معدلك هو: {{ mo3adal }} <br>{{ msg }}
 </div>
 <a href="/{{sem}}" class="reset-btn"> إعادة الحساب</a>
-<a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+<a href="/" class="home-btn"> الصفحة الرئيسية</a>
 {% endif %}
 
 </div>
@@ -472,7 +472,7 @@ def year():
     {% else %}
     <div class="result" style="color:#ff5555;">يجب أن تملأ علامات السداسي الأول والثاني</div>
     {% endif %}
-    <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+    <a href="/" class="home-btn"> الصفحة الرئيسية</a>
     </div>
     </body>
     </html>
