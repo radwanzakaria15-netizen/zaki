@@ -36,14 +36,12 @@ header{
 header h1{
     font-size:60px;
     color:#00ffff;
-    text-shadow:0 0 8px #00ffff;
     margin-bottom:10px;
 }
 
 header h2{
     font-size:28px;
     color:#ffffff;
-    text-shadow:0 0 6px #ffffff;
 }
 
 .buttons{
@@ -71,7 +69,6 @@ header h2{
 
 .buttons a button:hover{
     transform:scale(1.08);
-    box-shadow:0 0 8px #00ffff;
 }
 
 .container{
@@ -81,7 +78,6 @@ header h2{
     padding:30px;
     background: rgba(0,0,0,0.6);
     border-radius:25px;
-    box-shadow:0 12px 35px rgba(0,0,0,0.6);
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -90,7 +86,6 @@ header h2{
 h2.result-title{
     text-align:center;
     color:#00ffff;
-    text-shadow:0 0 4px #00ffff, 0 0 8px #00ffff;
     margin-bottom:30px;
     font-size:28px;
 }
@@ -108,19 +103,15 @@ h2.result-title{
     border-radius:20px;
     width: 250px;
     text-align:center;
-    box-shadow:0 4px 15px rgba(0,255,255,0.2);
     transition:0.3s;
 }
 .card:hover{
     transform: translateY(-6px);
-    box-shadow:0 6px 20px rgba(0,255,255,0.35);
 }
 
-/* إزالة التوهج بالكامل من عناوين المواد داخل الصناديق */
 .card h3{
     margin-bottom:15px;
     color:#ffd700;
-    text-shadow:none;
 }
 
 .card input{
@@ -137,7 +128,6 @@ h2.result-title{
 }
 .card input:focus{
     background: rgba(0,255,255,0.2);
-    box-shadow:0 0 12px #00ffff;
     transform: scale(1.05);
     outline:none;
 }
@@ -157,7 +147,6 @@ button.calc{
 }
 button.calc:hover{
     transform:scale(1.08);
-    box-shadow:0 0 12px #00ffff;
 }
 
 .result{
@@ -183,7 +172,6 @@ a.reset-btn{
 }
 a.reset-btn:hover{
     transform:scale(1.08);
-    box-shadow:0 0 12px #00ffff;
 }
 
 footer{
@@ -191,15 +179,6 @@ footer{
     font-size:18px;
     color:#00ffff;
     margin-top:30px;
-}
-footer a{
-    color:#00ffff;
-    text-decoration:none;
-    transition:0.3s;
-    margin-left:10px;
-}
-footer a:hover{
-    transform: scale(1.2);
 }
 
 @media(max-width:768px){
@@ -211,20 +190,18 @@ footer a:hover{
 </style>
 '''
 
-# الصفحة الرئيسية
 home = '''
 <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
 <title>حساب معدل (ملمح ابتدائي لغة عربية)</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 ''' + style + '''
 </head>
 <body>
 <header>
 <h1>Zaki</h1>
-<h2>📊 موقع حساب المعدل ملمح ابتدائي لغة عربية</h2>
+<h2>📊 موقع حساب المعدل</h2>
 </header>
 
 <div class="buttons">
@@ -234,13 +211,12 @@ home = '''
 </div>
 
 <footer>
-<a href="https://t.me/zakariazakii" target="_blank"><i class="fab fa-telegram fa-2x"></i></a>
+<a href="https://t.me/zakariazakii" target="_blank">Telegram</a>
 </footer>
 </body>
 </html>
 '''
 
-# قالب السداسي
 s_template = '''
 <!DOCTYPE html>
 <html lang="ar">
@@ -251,7 +227,7 @@ s_template = '''
 </head>
 <body>
 <div class="container">
-<h2 class="result-title">📊 {{title}}</h2>
+<h2 class="result-title">{{title}}</h2>
 <form method="post">
 <div class="cards">
 <div class="card"><h3>النحو</h3><input name="tdnaho" placeholder="TD" required><input name="examnaho" placeholder="Exam" required></div>
@@ -268,19 +244,16 @@ s_template = '''
 </form>
 
 {% if mo3adal %}
-<div class="result" style="color:{% if mo3adal<10 %}#ff5555{% elif mo3adal<=16 %}#00ff00{% else %}#ffff00{% endif %}; 
-text-shadow:{% if mo3adal<10 %}0 0 8px #ff5555,0 0 15px #ff5555{% elif mo3adal<=16 %}0 0 4px #00ff00,0 0 8px #00ff00{% else %}0 0 4px #ffff00,0 0 8px #ffff00{% endif %};">
-🔥 معدلك هو: {{ mo3adal }} 🔥<br>{{ msg }}
+<div class="result">
+معدلك هو: {{ mo3adal }}<br>{{ msg }}
 </div>
 <a href="/" class="reset-btn">🔄 إعادة الحساب</a>
 {% endif %}
-
 </div>
 </body>
 </html>
 '''
 
-# قالب المعدل السنوي
 year_template = '''
 <!DOCTYPE html>
 <html lang="ar">
@@ -291,16 +264,17 @@ year_template = '''
 </head>
 <body>
 <div class="container">
-<h2 class="result-title">📊 حساب المعدل السنوي</h2>
+<h2 class="result-title">حساب المعدل السنوي</h2>
 {% if mo3adal %}
-<div class="result" style="color:{% if mo3adal<10 %}#ff5555{% elif mo3adal<=16 %}#00ff00{% else %}#ffff00{% endif %};
-text-shadow:{% if mo3adal<10 %}0 0 8px #ff5555,0 0 15px #ff5555{% elif mo3adal<=16 %}0 0 4px #00ff00,0 0 8px #00ff00{% else %}0 0 4px #ffff00,0 0 8px #ffff00{% endif %};">
-🔥 معدلك السنوي هو: {{ mo3adal }} 🔥<br>
+<div class="result">
+معدلك السنوي هو: {{ mo3adal }}<br>
 {% if mo3adal >= 10 %}🎉 ألف مبروك، معدلك ممتاز!{% else %}❌ المعدل أقل من المطلوب{% endif %}
 </div>
 <a href="/" class="reset-btn">🔄 إعادة الحساب</a>
 {% else %}
-<div class="result" style="color:#ff5555;">يجب أن تملأ علامات السداسي الأول والثاني حتى تستطيع حساب المعدل السنوي</div>
+<div class="result">
+يجب أن تملأ علامات السداسي الأول والثاني حتى تستطيع حساب المعدل السنوي
+</div>
 <a href="/" class="reset-btn">🔄 العودة للرئيسية</a>
 {% endif %}
 </div>
@@ -308,7 +282,6 @@ text-shadow:{% if mo3adal<10 %}0 0 8px #ff5555,0 0 15px #ff5555{% elif mo3adal<=
 </html>
 '''
 
-# حساب المعدل
 def calc_s(s):
     n=(float(s["tdnaho"])*0.33+float(s["examnaho"])*0.67)*2
     srf=(float(s["tdsrf"])*0.33+float(s["examsrf"])*0.67)*2
@@ -355,227 +328,5 @@ def s2():
 def year():
     mo3adal=None
     return render_template_string(year_template, mo3adal=mo3adal)
-
-app.run(host="0.0.0.0", port=5000)    color:#ffd700;
-}
-
-/* === الحقول === */
-.card input{
-    width:40%;
-    padding:10px;
-    margin:5px 3%;
-    border-radius:12px;
-    border:none;
-    background: rgba(255,255,255,0.12);
-    color:#fff;
-    font-weight:bold;
-    text-align:center;
-    transition:0.25s;
-}
-.card input:focus{
-    background: rgba(0,255,255,0.2);
-    box-shadow:0 0 12px #00ffff;
-    transform: scale(1.05);
-    outline:none;
-}
-
-/* === زر الحساب === */
-button{
-    display:block;
-    margin:25px auto 0 auto;
-    padding:14px 28px;
-    border:none;
-    border-radius:22px;
-    font-weight:bold;
-    background: linear-gradient(90deg,#00ffff,#0072ff);
-    color:#1b1b2f;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
-}
-button:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 18px #00ffff;
-}
-
-/* === النتيجة === */
-.result{
-    margin-top:28px;
-    font-size:28px;
-    font-weight:bold;
-    color:#ffdf00;
-    text-shadow:0 0 14px #ffdf00;
-    padding:18px;
-    border-radius:20px;
-    background: rgba(255,255,255,0.07);
-    text-align:center;
-}
-
-a.reset-btn{
-    display:inline-block;
-    margin-top:18px;
-    padding:14px 28px;
-    background: linear-gradient(90deg,#0072ff,#00ffff);
-    color:#1b1b2f;
-    border-radius:18px;
-    font-weight:bold;
-    text-decoration:none;
-    transition:0.3s;
-}
-a.reset-btn:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 18px #00ffff;
-}
-
-.footer{
-    margin-top:22px;
-    color:#ccc;
-    font-size:14px;
-    text-align:center;
-}
-
-@media(max-width:768px){
-    .cards { flex-direction: column; align-items:center;}
-    .card { width:90%; }
-    .card input { width:45%; }
-}
-</style>
-</head>
-<body>
-<div class="container">
-<h2>📊 حساب معدل السداسي </h2>
-<form method="post">
-<div class="cards">
-<div class="card">
-<h3>النحو</h3>
-<input name="tdnaho" placeholder="TD" required>
-<input name="examnaho" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>الصرف</h3>
-<input name="tdsrf" placeholder="TD" required>
-<input name="examsrf" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>الأدب</h3>
-<input name="tdadab" placeholder="TD" required>
-<input name="examadab" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>الرياضيات</h3>
-<input name="tdm" placeholder="TD" required>
-<input name="examm" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>الفيزياء</h3>
-<input name="tdf" placeholder="TD" required>
-<input name="examf" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>الكيمياء</h3>
-<input name="tdc" placeholder="TD" required>
-<input name="examc" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>الشريعة</h3>
-<input name="examchari3a" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>التكنولوجيا</h3>
-<input name="tdticno" placeholder="TD" required>
-<input name="examticno" placeholder="Exam" required>
-</div>
-
-<div class="card">
-<h3>مواد أخرى</h3>
-<input name="b" placeholder="البلاغة" required>
-<input name="e" placeholder="الانجليزية" required>
-<input name="i" placeholder="الإملاء" required>
-<input name="y" placeholder="فنيات الكتابة" required>
-</div>
-</div>
-<button type="submit">احسب المعدل</button>
-</form>
-
-{% if mo3adal %}
-<div class="result">
-🔥 معدلك هو: {{ mo3adal }} 🔥<br>{{ msg }}
-</div>
-<a href="/" class="reset-btn">🔄 إعادة الحساب</a>
-{% endif %}
-
-<div class="footer">© zaki</div>
-</div>
-</body>
-</html>
-'''
-
-@app.route("/", methods=["GET","POST"])
-def index():
-    mo3adal = None
-    msg = ""
-    if request.method == "POST":
-        tdnaho=float(request.form["tdnaho"])
-        examnaho=float(request.form["examnaho"])
-        notnaho=tdnaho*0.33+examnaho*0.67
-        n=notnaho*2
-
-        tdsrf=float(request.form["tdsrf"])
-        examsrf=float(request.form["examsrf"])
-        notsrf=tdsrf*0.33+examsrf*0.67
-        s=notsrf*2
-
-        tdadab=float(request.form["tdadab"])
-        examadab=float(request.form["examadab"])
-        notadab=tdadab*0.33+examadab*0.67
-        a=notadab*2
-
-        tdm=float(request.form["tdm"])
-        examm=float(request.form["examm"])
-        notm=tdm*0.33+examm*0.67
-        m=notm*2
-
-        tdf=float(request.form["tdf"])
-        examf=float(request.form["examf"])
-        notf=tdf*0.33+examf*0.67
-        f=notf*2
-
-        tdc=float(request.form["tdc"])
-        examc=float(request.form["examc"])
-        notc=tdc*0.33+examc*0.67
-        c=notc*2
-
-        examchari3a=float(request.form["examchari3a"])
-        ch=examchari3a*2
-
-        tdticno=float(request.form["tdticno"])
-        examticno=float(request.form["examticno"])
-        ticno=tdticno*0.33+examticno*0.67
-        t=ticno
-
-        b=float(request.form["b"])
-        e=float(request.form["e"])
-        i=float(request.form["i"])
-        y=float(request.form["y"])
-
-        majmo3=n+s+a+m+f+c+ch+t+b+e+i+y
-        mo3adal=round(majmo3/19,2)
-
-        if mo3adal >= 10:
-            if mo3adal > 15:
-                msg = "🎉 ألف مبروك، معدلك ممتاز!"
-            else:
-                msg = "✅ مبروك، راك نجحت!"
-        else:
-            msg = "❌ لا تقلق، مزال السداسي الثاني"
-
-    return render_template_string(html, mo3adal=mo3adal, msg=msg)
 
 app.run(host="0.0.0.0", port=5000)
