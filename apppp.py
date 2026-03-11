@@ -118,6 +118,115 @@ s_template = '''
 </form>
 
 {% if mo3adal %}
+<div class="result" style="color: {{ color }};">
+🔥 معدلك هو: {{ mo3adal }} 🔥<br>{{ msg }}
+</div>
+<a href="/reset/{{sem}}" class="reset-btn">🔄 إعادة الحساب</a>
+<a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+{% endif %}
+
+</div>
+</body>
+</html>
+'''
+
+def calc_s(s):
+    n=(float(s["tdnaho"])*0.33+float(s["examnaho"])*0.67)*2
+    srf=(float(s["tdsrf"])*0.33+float(s["examsrf"])*0.67)*2
+    a=(float(s["tdadab"])*0.33+float(s["examadab"])*0.67)*2
+    m=(float(s["tdm"])*0.33+float(s["examm"])*0.67)*2
+    f=(float(s["tdf"])*0.33+float(s["examf"])*0.67)*2
+    c=(float(s["tdc"])*0.33+float(s["examc"])*0.67)*2
+    ch=float(s["examchari3a"])*2
+    t=(float(s["tdtech"])*0.33+float(s["examtech"])*0.67)
+    b=float(s["b"]); e=float(s["e"]); i=float(s["i"]); y=float(s["y"])
+    return {'n':n,'s':srf,'a':a,'m':m,'f':f,'c':c,'ch':ch,'t':t,'b':b,'e':e,'i':i,'y':y}
+
+@app.route("/")
+def index():
+    return render_template_string(home)
+
+@app.route("/reset/<sem>")
+def reset(sem):
+    stored_data[sem] = {}  # مسح البيانات
+    return redirect(url_for(sem))
+
+@app.route("/s1", methods=["GET","POST"])
+def s1():
+    mo3adal=None; msg=""; color=""
+    if request.method=="POST":
+        stored_data['s1'] = request.form.to_dict()
+        res=calc_s(stored_data['s1'])
+        mo3adal=round(sum(res.values())/19,2)
+        if mo3adal>15: color="#FFD700"; msg="🎉 ألف مبروك، معدلك ممتاز!"
+        elif mo3adal>=10: color="#00FF00"; msg="✅ مبروك، راك نجحت!"
+        else: color="#FF5555"; msg="❌ لا تقلق، مزال السداسي الثاني"
+    data = stored_data['s1']
+    return render_template_string(s_template, title="حساب معدل السداسي الأول", tech_name="التكنولوجيا", other_name="الإملاء", mo3adal=mo3adal, msg=msg, data=data, sem="s1", color=color)
+
+@app.route("/s2", methods=["GET","POST"])
+def s2():
+    mo3adal=None; msg=""; color=""
+    if request.method=="POST":
+        stored_data['s2'] = request.form.to_dict()
+        res=calc_s(stored_data['s2'])
+        mo3adal=round(sum(res.values())/19,2)
+        if mo3adal>15: color="#FFD700"; msg="🎉 ألف مبروك، معدلك ممتاز!"
+        elif mo3adal>=10: color="#00FF00"; msg="✅ مبروك، راك نجحت!"
+        else: color="#FF5555"; msg="❌ لا تقلق، مزال الاستدراكي أو السداسي الأول"
+    data = stored_data['s2']
+    return render_template_string(s_template, title="حساب معدل السداسي الثاني", tech_name="الإعلام الآلي", other_name="الخط العربي", mo3adal=mo3adal, msg=msg, data=data, sem="s2", color=color)
+
+@app.route("/year", methods=["GET","POST"])
+def year():
+    mo3adal=None; color=""
+    if stored_data['s1'] and stored_data['s2']:
+        res1=calc_s(stored_data['s1'])
+        res2=calc_s(stored_data['s2'])
+        mo3adal=round((sum(res1.values())+sum(res2.values()))/38,2)
+        if mo3adal>15: color="#FFD700"
+        elif mo3adal>=10: color="#00FF00"
+        else: color="#FF5555"
+
+    year_template = '''
+    <!DOCTYPE html>
+    <html lang="ar">
+    <head>
+    <meta charset="UTF-8">
+    <title>المعدل السنوي</title>
+    ''' + style + '''
+    </head>
+    <body>
+    <div class="container">
+    <h2 class="result-title">حساب المعدل السنوي</h2>
+    {% if mo3adal %}
+    <div class="result" style="color: {{ color }};">
+    🔥 معدلك السنوي هو: {{ mo3adal }} 🔥<br>
+    {% if mo3adal >= 10 %}🎉 ألف مبروك، معدلك ممتاز!{% else %}❌ المعدل أقل من المطلوب{% endif %}
+    </div>
+    {% else %}
+    <div class="result" style="color:#FF5555;">يجب أن تملأ علامات السداسي الأول والثاني</div>
+    {% endif %}
+    <a href="/" class="home-btn">🏠 الصفحة الرئيسية</a>
+    </div>
+    </body>
+    </html>
+    '''
+    return render_template_string(year_template, mo3adal=mo3adal, color=color)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)</div>
+<div class="card"><h3>مواد أخرى</h3>
+  <input type="number" name="b" placeholder="البلاغة" min="0" max="20" step="0.01" required value="{{data.get('b','')}}">
+  <input type="number" name="e" placeholder="الانجليزية" min="0" max="20" step="0.01" required value="{{data.get('e','')}}">
+  <input type="number" name="i" placeholder="{{other_name}}" min="0" max="20" step="0.01" required value="{{data.get('i','')}}">
+  <input type="number" name="y" placeholder="فنيات الكتابة" min="0" max="20" step="0.01" required value="{{data.get('y','')}}">
+</div>
+</div>
+<button type="submit" class="calc">احسب المعدل</button>
+</form>
+
+{% if mo3adal %}
 <div class="result">
 🔥 معدلك هو: {{ mo3adal }} 🔥<br>{{ msg }}
 </div>
