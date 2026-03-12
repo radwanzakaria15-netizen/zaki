@@ -15,7 +15,7 @@ html, body {
     height:100%;  
     background: linear-gradient(-45deg, #1b1b2f, #4e54c8, #00c6ff, #0072ff);  
     background-size: 400% 400%;  
-    animation: gradientMove 35s ease infinite;  
+    animation: gradientMove 25s ease infinite;  
     color:white;  
     display:flex;  
     flex-direction:column;  
@@ -101,7 +101,7 @@ h2.result-title{text-align:center;color:#00ffff;margin-bottom:30px;font-size:28p
     outline:none;  
 }  
 
-
+button.calc{  /* زر حساب المعدل مع التوهج والموجة */
 button.calc {
     padding: 16px 36px;
     font-size: 18px;
@@ -115,14 +115,13 @@ button.calc {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    animation: pulseGlow 2s infinite;
 }
-*{
-will-change: transform;
-}
+
 /* تأثير التوهج عند المرور */
 button.calc:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow:0 6px 15px rgba(0,255,255,0.4);
+    box-shadow: 0 8px 25px rgba(0,255,255,0.7), 0 0 20px rgba(0,200,255,0.9);
 }
 
 /* تأثير الضغط */
@@ -130,7 +129,42 @@ button.calc:active {
     transform: translateY(1px) scale(0.98);
     box-shadow: 0 4px 10px rgba(0,255,255,0.5), 0 0 10px rgba(0,200,255,0.7);
 }
-#
+
+/* حركة التوهج المستمرة */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 4px 15px rgba(0,255,255,0.4), 0 0 8px rgba(0,255,255,0.3); }
+    50% { box-shadow: 0 4px 25px rgba(0,255,255,0.6), 0 0 18px rgba(0,255,255,0.5); }
+    100% { box-shadow: 0 4px 15px rgba(0,255,255,0.4), 0 0 8px rgba(0,255,255,0.3); }
+}
+
+/* تأثير الموجة عند النقر */
+button.calc::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,255,255,0.2);
+    top: 0;
+    left: -100%;
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+}
+
+button.calc:active::after {
+    left: 100%;
+    transition: all 0.5s ease;
+}
+    display:block;  
+    padding:14px 28px;  
+    border:none;  
+    border-radius:22px;  
+    font-weight:bold;  
+    background: linear-gradient(90deg,#00ffff,#0072ff);  
+    color:#1b1b2f;  
+    font-size:16px;  
+    cursor:pointer;  
+    transition:0.2s;  
+}  
 
 button.calc:hover{transform:scale(1.05);}  
 
@@ -182,6 +216,16 @@ a.back-btn:active, a.reset-btn:active, a.home-btn:active, .buttons a button:acti
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+/* أزرار جانبية ثابتة */
+.side-buttons {
+    position: fixed;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
     /* تأثير توهج عصري للأزرار */
 a.back-btn, a.reset-btn, a.home-btn, .buttons a button {
     display: inline-block;
@@ -202,6 +246,20 @@ a.back-btn:hover, a.reset-btn:hover, a.home-btn:hover, .buttons a button:hover {
     box-shadow: 0 8px 20px rgba(0,255,255,0.6), 0 0 12px rgba(0,255,255,0.5);
 }
 
+/* توهج متحرك على الزر */
+a.back-btn::after, a.reset-btn::after, a.home-btn::after, .buttons a button::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 25px;
+    background: linear-gradient(45deg, #00ffff, #0072ff, #00e5ff, #005de0);
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    filter: blur(10px);
+    z-index: -1;
+}
 
 /* إظهار التوهج عند المرور */
 a.back-btn:hover::after, a.reset-btn:hover::after, a.home-btn:hover::after, .buttons a button:hover::after {
@@ -213,40 +271,7 @@ a.back-btn:active, a.reset-btn:active, a.home-btn:active, .buttons a button:acti
     transform: scale(0.97); 
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
-/* توهج الزر */
-a.back-btn::after, 
-a.reset-btn::after, 
-a.home-btn::after, 
-.buttons a button::after {
 
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    border-radius: 25px;
-
-    background: linear-gradient(45deg,
-        #00ffff,
-        #0072ff,
-        #00e5ff,
-        #005de0);
-
-    opacity: 0;
-    transition: opacity 0.25s ease-in-out;
-    filter: blur(10px);
-    z-index: -1;
-}
-
-/* إظهار التوهج عند المرور */
-a.back-btn:hover::after, 
-a.reset-btn:hover::after, 
-a.home-btn:hover::after, 
-.buttons a button:hover::after {
-
-    opacity: 0.6;
-}
 /* أزرار جانبية ثابتة */
 .side-buttons {
     position: fixed;
@@ -309,13 +334,39 @@ a.back-btn, a.reset-btn, a.home-btn, .buttons a button {
     color:#fff;
 }
 
-/
+/* أزرار جانبية ثابتة على الحافة */
+.side-buttons {
+    position: fixed;
+    top: 50%;
+    right: 15px; /* مسافة عن الحافة */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
+}
 
 }
 
-#
+/* توهج متحرك على الزر */
+a.back-btn::after, a.reset-btn::after, a.home-btn::after, .buttons a button::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 25px;
+    background: linear-gradient(45deg, #00ffff, #0072ff, #00e5ff, #005de0);
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    filter: blur(10px);
+    z-index: -1;
+}
 
-#
+/* إظهار التوهج عند المرور */
+a.back-btn:hover::after, a.reset-btn:hover::after, a.home-btn:hover::after, .buttons a button:hover::after {
+    opacity: 0.6;
+}
 
 /* ضغط الزر عند النقر */
 a.back-btn:active, a.reset-btn:active, a.home-btn:active, .buttons a button:active {
