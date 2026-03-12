@@ -76,7 +76,7 @@ h2.result-title{text-align:center;color:#00ffff;margin-bottom:30px;font-size:28p
     border-radius:20px;  
     width:250px;  
     text-align:center;  
-    transition:0.3s;  
+    transition:0.1s;  
 }  
 
 .card:hover{transform: translateY(-6px);}  
@@ -93,7 +93,7 @@ h2.result-title{text-align:center;color:#00ffff;margin-bottom:30px;font-size:28p
     color:#fff;  
     font-weight:bold;  
     text-align:center;  
-    transition:0.2s;  
+    transition:0.1s;  
 }  
 
 .card input:focus{  
