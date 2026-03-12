@@ -115,9 +115,8 @@ button.calc {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    animation: pulseGlow 1.5s infinite;
 }
-{
+*{
 will-change: transform;
 }
 /* تأثير التوهج عند المرور */
@@ -131,14 +130,6 @@ button.calc:active {
     transform: translateY(1px) scale(0.98);
     box-shadow: 0 4px 10px rgba(0,255,255,0.5), 0 0 10px rgba(0,200,255,0.7);
 }
-
-/* حركة التوهج المستمرة */
-@keyframes pulseGlow {
-    0% { box-shadow: 0 4px 15px rgba(0,255,255,0.4), 0 0 8px rgba(0,255,255,0.3); }
-    50% { box-shadow: 0 4px 25px rgba(0,255,255,0.6), 0 0 18px rgba(0,255,255,0.5); }
-    100% { box-shadow: 0 4px 15px rgba(0,255,255,0.4), 0 0 8px rgba(0,255,255,0.3); }
-}
-
 #
 
 button.calc:hover{transform:scale(1.05);}  
