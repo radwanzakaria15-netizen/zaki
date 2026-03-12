@@ -19,7 +19,9 @@ color:white;
 display:flex;  
 flex-direction:column;  
 justify-content:center;  
-align-items:center;  
+align-items:center;
+overflow-x: hidden;  
+overflow-y: auto;  
 }  
 
 @keyframes gradientMove{  
