@@ -1,7 +1,7 @@
-from flask import Flask, request, render_template_string, redirect, url_for  
+from flask import Flask, request, render_template_string, redirect, url_for, session
 
-app = Flask(__name__)  
-
+app = Flask(__name__)
+app.secret_key = "secret_key_123"  # لازم للجلسة
 # ----------------------------- CSS -----------------------------
 style = '''  
 <style>  
@@ -484,8 +484,6 @@ home = '''
 </html>  
 '''  
 
-stored_data = {'s1': {}, 's2': {}}  
-
 # ----------------------------- نموذج السداسي -----------------------------
 s_template = '''  
 <!DOCTYPE html>  
@@ -564,6 +562,8 @@ s_template = '''
 </html>  
 '''  
 
+# ----------------------------- حساب المعدل ----------------------------
+
 # ----------------------------- حساب المعدل -----------------------------
 def calc_s(s):  
     n=(float(s["tdnaho"])*0.33+float(s["examnaho"])*0.67)*2  
@@ -584,20 +584,20 @@ def index():
 
 @app.route("/reset/<sem>")  
 def reset(sem):  
-    stored_data[sem] = {}  
+    session[sem] = {}  # إعادة تخزين الجلسة فقط
     return redirect(url_for(sem))  
 
 @app.route("/s1", methods=["GET","POST"])  
 def s1():  
     mo3adal=None; msg=""; color=""  
     if request.method=="POST":  
-        stored_data['s1'] = request.form.to_dict()  
-        res=calc_s(stored_data['s1'])  
+        session['s1'] = request.form.to_dict()  # تخزين البيانات في الجلسة
+        res=calc_s(session['s1'])  
         mo3adal=round(sum(res.values())/19,2)  
         if mo3adal>15: color="#FFD700"; msg="🎉 ألف مبروك، معدلك ممتاز!"  
         elif mo3adal>=10: color="#00FF00"; msg="✅ مبروك، لقد نجحت!"  
         else: color="#FF5555"; msg="❌ لديك فرصة ثانية في السداسي الثاني"  
-    data = stored_data['s1']  
+    data = session.get('s1', {})  
     return render_template_string(s_template, title="حساب معدل السداسي الأول", tech_name="التكنولوجيا", other_name="الإملاء", mo3adal=mo3adal, msg=msg, data=data, sem="s1", color=color)  
 
 @app.route("/s2", methods=["GET","POST"])  
@@ -605,12 +605,12 @@ def s2():
     mo3adal=None; msg=""; color=""  
     total_mo3adal = None
     if request.method=="POST":  
-        stored_data['s2'] = request.form.to_dict()  
-        res=calc_s(stored_data['s2'])  
+        session['s2'] = request.form.to_dict()
+        res=calc_s(session['s2'])  
         mo3adal=round(sum(res.values())/19,2)  
 
-        if stored_data['s1']:
-            res1=calc_s(stored_data['s1'])
+        if session.get('s1'):
+            res1=calc_s(session['s1'])
             total_mo3adal = round((sum(res1.values()) + sum(res.values()))/38,2)
 
         if mo3adal>15: color="#FFD700"; msg="🎉 ألف مبروك، معدلك ممتاز!"  
@@ -625,15 +625,15 @@ def s2():
             else:
                 msg="❌ لديك فرصة ثانية في السداسي الثاني"
 
-    data = stored_data['s2']  
+    data = session.get('s2', {})  
     return render_template_string(s_template, title="حساب معدل السداسي الثاني", tech_name="الإعلام الآلي", other_name="الخط العربي", mo3adal=mo3adal, msg=msg, data=data, sem="s2", color=color)  
 
 @app.route("/year", methods=["GET"])  
 def year():  
     mo3adal=None; msg=""; color=""  
-    if stored_data['s1'] and stored_data['s2']:  
-        res1=calc_s(stored_data['s1'])  
-        res2=calc_s(stored_data['s2'])  
+    if session.get('s1') and session.get('s2'):  
+        res1=calc_s(session['s1'])  
+        res2=calc_s(session['s2'])  
         mo3adal=round((sum(res1.values())+sum(res2.values()))/38,2)  
 
         if mo3adal >= 15: 
@@ -666,7 +666,6 @@ def year():
 </div>  
 {% endif %}  
 
-<!-- زر الصفحة الرئيسية ثابت على الجانب الأيمن -->
 <div class="side-buttons">
     <a href="/" class="home-btn">🏠 الرئيسية</a>
 </div>
@@ -680,4 +679,4 @@ def year():
 
 # ----------------------------- تشغيل التطبيق -----------------------------
 if __name__ == "__main__":  
-    app.run(host="0.0.0.0", port=5000)#
+    app.run(host="0.0.0.0", port=5000)
